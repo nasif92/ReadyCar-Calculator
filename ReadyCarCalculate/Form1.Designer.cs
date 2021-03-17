@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.labelDistance = new System.Windows.Forms.Label();
             this.labelItemCategory = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -42,17 +43,19 @@
             this.btnCalculate = new DevExpress.XtraEditors.SimpleButton();
             this.labelServiceFee = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.textEditItemWeight = new DevExpress.XtraEditors.TextEdit();
             this.label8 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.labelLabourFee = new System.Windows.Forms.Label();
             this.checkBoxAddLabourFee = new System.Windows.Forms.CheckBox();
             this.labelDiscountAdded = new System.Windows.Forms.Label();
             this.comboBoxDiscount = new System.Windows.Forms.ComboBox();
+            this.LookUpEditItemWeight = new DevExpress.XtraEditors.LookUpEdit();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.textEditDistance.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEditCategory.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditServiceFee.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEditItemWeight.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LookUpEditItemWeight.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // labelDistance
@@ -97,13 +100,13 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label1.Location = new System.Drawing.Point(284, 46);
+            this.label1.Location = new System.Drawing.Point(310, 27);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(334, 39);
+            this.label1.Size = new System.Drawing.Size(321, 46);
             this.label1.TabIndex = 6;
-            this.label1.Text = "ReadyCar Calculator";
+            this.label1.Text = "Quote Calculator";
             // 
             // labelCost
             // 
@@ -118,7 +121,7 @@
             // 
             // lookUpEditCategory
             // 
-            this.lookUpEditCategory.Location = new System.Drawing.Point(225, 195);
+            this.lookUpEditCategory.Location = new System.Drawing.Point(225, 193);
             this.lookUpEditCategory.Name = "lookUpEditCategory";
             this.lookUpEditCategory.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
             this.lookUpEditCategory.Properties.Appearance.Options.UseFont = true;
@@ -127,7 +130,7 @@
             this.lookUpEditCategory.Properties.NullText = "";
             this.lookUpEditCategory.Size = new System.Drawing.Size(249, 24);
             this.lookUpEditCategory.TabIndex = 8;
-            this.lookUpEditCategory.EditValueChanged += new System.EventHandler(this.lookUpEditCategory_EditValueChanged);
+            this.lookUpEditCategory.EditValueChanged += new System.EventHandler(this.LookUpEditCategory_EditValueChanged);
             // 
             // label2
             // 
@@ -160,7 +163,7 @@
             this.comboBoxLabour.Size = new System.Drawing.Size(136, 24);
             this.comboBoxLabour.TabIndex = 10;
             this.comboBoxLabour.Text = "0";
-            this.comboBoxLabour.SelectedIndexChanged += new System.EventHandler(this.comboBoxLabour_SelectedIndexChanged);
+            this.comboBoxLabour.SelectedIndexChanged += new System.EventHandler(this.ComboBoxLabour_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -188,6 +191,8 @@
             this.btnCalculate.Appearance.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.btnCalculate.Appearance.Options.UseFont = true;
             this.btnCalculate.Appearance.Options.UseForeColor = true;
+            this.btnCalculate.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCalculate.ImageOptions.Image")));
+            this.btnCalculate.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btnCalculate.Location = new System.Drawing.Point(692, 483);
             this.btnCalculate.Name = "btnCalculate";
             this.btnCalculate.Size = new System.Drawing.Size(159, 42);
@@ -216,15 +221,6 @@
             this.label7.Size = new System.Drawing.Size(173, 24);
             this.label7.TabIndex = 16;
             this.label7.Text = "Item Weight (lbs):";
-            // 
-            // textEditItemWeight
-            // 
-            this.textEditItemWeight.Location = new System.Drawing.Point(715, 195);
-            this.textEditItemWeight.Name = "textEditItemWeight";
-            this.textEditItemWeight.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.textEditItemWeight.Properties.Appearance.Options.UseFont = true;
-            this.textEditItemWeight.Size = new System.Drawing.Size(136, 24);
-            this.textEditItemWeight.TabIndex = 17;
             // 
             // label8
             // 
@@ -270,7 +266,7 @@
             this.checkBoxAddLabourFee.TabIndex = 21;
             this.checkBoxAddLabourFee.Text = "Add Labour Fee?";
             this.checkBoxAddLabourFee.UseVisualStyleBackColor = true;
-            this.checkBoxAddLabourFee.CheckedChanged += new System.EventHandler(this.checkBoxAddLabourFee_CheckedChanged);
+            this.checkBoxAddLabourFee.CheckedChanged += new System.EventHandler(this.CheckBoxAddLabourFee_CheckedChanged);
             // 
             // labelDiscountAdded
             // 
@@ -308,18 +304,42 @@
             this.comboBoxDiscount.Text = "0";
             this.comboBoxDiscount.SelectedIndexChanged += new System.EventHandler(this.comboBoxDiscount_SelectedIndexChanged);
             // 
+            // LookUpEditItemWeight
+            // 
+            this.LookUpEditItemWeight.Location = new System.Drawing.Point(715, 193);
+            this.LookUpEditItemWeight.Name = "LookUpEditItemWeight";
+            this.LookUpEditItemWeight.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.LookUpEditItemWeight.Properties.Appearance.Options.UseFont = true;
+            this.LookUpEditItemWeight.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.LookUpEditItemWeight.Properties.NullText = "";
+            this.LookUpEditItemWeight.Size = new System.Drawing.Size(136, 24);
+            this.LookUpEditItemWeight.TabIndex = 24;
+            this.LookUpEditItemWeight.EditValueChanged += new System.EventHandler(this.LookUpEditItemWeight_EditValueChanged);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(8, 7);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(123, 69);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 25;
+            this.pictureBox1.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(919, 590);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.LookUpEditItemWeight);
             this.Controls.Add(this.comboBoxDiscount);
             this.Controls.Add(this.labelDiscountAdded);
             this.Controls.Add(this.checkBoxAddLabourFee);
             this.Controls.Add(this.labelLabourFee);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.textEditItemWeight);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.labelServiceFee);
             this.Controls.Add(this.btnCalculate);
@@ -336,11 +356,13 @@
             this.Controls.Add(this.labelDistance);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "Form1";
-            this.Text = "ReadyCarCalculator";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "ReadyCar Quote Calculator";
             ((System.ComponentModel.ISupportInitialize)(this.textEditDistance.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEditCategory.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditServiceFee.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEditItemWeight.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LookUpEditItemWeight.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -362,13 +384,14 @@
         private DevExpress.XtraEditors.SimpleButton btnCalculate;
         private System.Windows.Forms.Label labelServiceFee;
         private System.Windows.Forms.Label label7;
-        private DevExpress.XtraEditors.TextEdit textEditItemWeight;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label labelLabourFee;
         private System.Windows.Forms.CheckBox checkBoxAddLabourFee;
         private System.Windows.Forms.Label labelDiscountAdded;
         private System.Windows.Forms.ComboBox comboBoxDiscount;
+        private DevExpress.XtraEditors.LookUpEdit LookUpEditItemWeight;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

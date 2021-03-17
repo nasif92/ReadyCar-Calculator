@@ -1,0 +1,6 @@
+obj\Debug\Product.wixobj
+C:\Users\nhossain\source\repos\ReadyCar\ReadyCarCalculate\ReadyCarInstaller\bin\Debug\ReadyCarInstaller.msi
+C:\Users\nhossain\source\repos\ReadyCar\ReadyCarCalculate\ReadyCarInstaller\bin\Debug\ReadyCarInstaller.wixpdb
+obj\Debug\ReadyCarInstaller.wixproj.BindContentsFileListnull.txt
+obj\Debug\ReadyCarInstaller.wixproj.BindOutputsFileListnull.txt
+obj\Debug\ReadyCarInstaller.wixproj.BindBuiltOutputsFileListnull.txt

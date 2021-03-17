@@ -1,0 +1,2 @@
+C:\Users\nhossain\source\repos\ReadyCar\ReadyCarCalculate\ReadyCarInstaller\bin\Debug\ReadyCarInstaller.msi
+C:\Users\nhossain\source\repos\ReadyCar\ReadyCarCalculate\ReadyCarInstaller\bin\Debug\ReadyCarInstaller.wixpdb

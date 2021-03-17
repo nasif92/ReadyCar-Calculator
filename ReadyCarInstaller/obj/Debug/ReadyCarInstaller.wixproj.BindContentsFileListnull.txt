@@ -1,0 +1,9 @@
+C:\Users\nhossain\source\repos\ReadyCar\ReadyCarCalculate\ReadyCarCalculate\bin\Debug\DevExpress.Data.Desktop.v20.1.dll
+C:\Users\nhossain\source\repos\ReadyCar\ReadyCarCalculate\ReadyCarCalculate\bin\Debug\DevExpress.Data.v20.1.dll
+C:\Users\nhossain\source\repos\ReadyCar\ReadyCarCalculate\ReadyCarCalculate\bin\Debug\DevExpress.Pdf.v20.1.Core.dll
+C:\Users\nhossain\source\repos\ReadyCar\ReadyCarCalculate\ReadyCarCalculate\bin\Debug\DevExpress.Pdf.v20.1.Drawing.dll
+C:\Users\nhossain\source\repos\ReadyCar\ReadyCarCalculate\ReadyCarCalculate\bin\Debug\DevExpress.Printing.v20.1.Core.dll
+C:\Users\nhossain\source\repos\ReadyCar\ReadyCarCalculate\ReadyCarCalculate\bin\Debug\DevExpress.Sparkline.v20.1.Core.dll
+C:\Users\nhossain\source\repos\ReadyCar\ReadyCarCalculate\ReadyCarCalculate\bin\Debug\DevExpress.Utils.v20.1.dll
+C:\Users\nhossain\source\repos\ReadyCar\ReadyCarCalculate\ReadyCarCalculate\bin\Debug\DevExpress.XtraEditors.v20.1.dll
+C:\Users\nhossain\source\repos\ReadyCar\ReadyCarCalculate\ReadyCarCalculate\bin\Debug\ReadyCarCalculate.exe

@@ -29,5 +29,10 @@ namespace ReadyCarCalculate
         {
             new DeliveryForm(outer, false) { MdiParent = this.outer }.Show();
         }
+
+        private void barButtonCharts_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            new ChartsForm(outer).Show();
+        }
     }
 }

@@ -12,6 +12,8 @@ namespace ReadyCarCalculate
         private int labour, labourFee, discount, category, weight;
         private bool addLabourFee, deliveryForm;
         object dataSource;
+        private int GST;
+        private int noOfHours = 0;
 
         public DeliveryForm(OuterForm outer, bool del)
         {
@@ -36,6 +38,7 @@ namespace ReadyCarCalculate
 
             this.lookUpEditCategory.Properties.DataSource = dataSource;
             this.lookUpEditCategory.Properties.DisplayMember = "Category";
+            this.comboBoxProvinces.SelectedIndex = 0;
 
             var weights = CreateWeightData();
             this.LookUpEditItemWeight.Properties.DataSource = weights;
@@ -96,6 +99,11 @@ namespace ReadyCarCalculate
             return tbl;
         }
 
+
+
+
+
+
         private void BtnCalculate_Click(object sender, EventArgs e)
         {
             try
@@ -109,7 +117,7 @@ namespace ReadyCarCalculate
                 }
                 else
                 {
-                    int distance = Int32.Parse(textEditDistance.EditValue.ToString());
+                    double distance = Double.Parse(textEditDistance.EditValue.ToString());
                 }
 
                 // check if the weight of the items is larger or the category is larger
@@ -122,25 +130,30 @@ namespace ReadyCarCalculate
                     DoCalculation(this.category);
                 }
 
+                if (!deliveryForm)
+                {
+                    this.noOfHours = Int32.Parse(this.textEditNoOfHours.Text);
+                }
+
                 if (!addLabourFee)
                 {
                     this.labourFee = 0;
                     this.labelLabourFee.Text = "Labour Fee: $0.00";
-                    this.labelCost.Text = "Cost: $ " + string.Format("{0:#.00}", (this.cost + Double.Parse(this.textEditServiceFee.Text) * Double.Parse(this.textEditDistance.Text)) * 1.05);
+                    this.labelCost.Text = "Cost: $ " + string.Format("{0:#.00}", (this.cost + Double.Parse(this.textEditServiceFee.Text) * Double.Parse(this.textEditDistance.Text)) * (1 + 0.01 * this.GST));
 
                     this.labelServiceFee.Text = "Service Fee: $" + string.Format("{0:#.00}", Double.Parse(this.textEditServiceFee.Text) * Double.Parse(this.textEditDistance.Text));
                 }
                 else
                 {
-                    this.labelLabourFee.Text = "Labour Fee: $" + this.labourFee * this.labour;
-                    this.labelCost.Text = "Cost: $ " + string.Format("{0:#.00}", (this.cost + Double.Parse(this.textEditServiceFee.Text) * Double.Parse(this.textEditDistance.Text) + (this.labourFee * this.labour)) * 1.05);
+                    this.labelLabourFee.Text = "Labour Fee: $" + this.labourFee * this.labour * this.noOfHours;
+                    this.labelCost.Text = "Cost: $ " + string.Format("{0:#.00}", (this.cost + Double.Parse(this.textEditServiceFee.Text) * Double.Parse(this.textEditDistance.Text) + (this.labourFee * this.labour * this.noOfHours)) * (1 + 0.01 * this.GST)) + (this.noOfHours * 25);
                     this.labelServiceFee.Text = "Service Fee: $" + string.Format("{0:#.00}", Double.Parse(this.textEditServiceFee.Text) * Double.Parse(this.textEditDistance.Text));
                 }
 
                 if (this.discount != 0)
                 {
-                    double cost = ((this.cost + Double.Parse(this.textEditServiceFee.Text) * Double.Parse(this.textEditDistance.Text) + (this.labourFee * this.labour) * 1.05)) * this.discount / 100;
-                    double original = (this.cost + Double.Parse(this.textEditServiceFee.Text) * Double.Parse(this.textEditDistance.Text) + (this.labourFee * this.labour)) * 1.05;
+                    double cost = ((this.cost + Double.Parse(this.textEditServiceFee.Text) * Double.Parse(this.textEditDistance.Text) + (this.labourFee * this.labour * this.noOfHours) * 1.05)) * this.discount / 100;
+                    double original = (this.cost + Double.Parse(this.textEditServiceFee.Text) * Double.Parse(this.textEditDistance.Text) + (this.labourFee * this.labour * this.noOfHours)) * 1.05;
                     this.labelCost.Text = "Cost: $ " + string.Format("{0:#.00}", (original - cost));
                     this.labelDiscountAdded.Visible = true;
                 }
@@ -218,6 +231,29 @@ namespace ReadyCarCalculate
             }
         }
 
+        // selected provincial gst calculation
+        private void ComboBoxProvinces_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (this.comboBoxProvinces.SelectedItem)
+            {
+                case "AB":
+                case "BC":
+                case "MB":
+                case "QC":
+                case "SK":
+                    this.labelGst.Text = "GST: 5%";
+                    this.GST = 5;
+                    break;
+                case "ON":
+                    this.labelGst.Text = "GST/HST: 13%";
+                    this.GST = 13;
+                    break;
+                case "NL":
+                    this.labelGst.Text = "GST/HST: 15%";
+                    this.GST = 15;
+                    break;
+            }
+        }
 
         private void CalculateMovingCost(string category)
         {

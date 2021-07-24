@@ -34,11 +34,13 @@
             this.bar2 = new DevExpress.XtraBars.Bar();
             this.btnAbout = new DevExpress.XtraBars.BarButtonItem();
             this.btnHome = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.btnAddParameters = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,9 +55,11 @@
             this.barManager1.Form = this;
             this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.btnAbout,
-            this.btnHome});
+            this.btnHome,
+            this.barButtonItem1,
+            this.btnAddParameters});
             this.barManager1.MainMenu = this.bar2;
-            this.barManager1.MaxItemId = 2;
+            this.barManager1.MaxItemId = 4;
             // 
             // bar2
             // 
@@ -65,7 +69,9 @@
             this.bar2.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             this.bar2.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.btnAbout),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btnHome)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnHome),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem1),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnAddParameters)});
             this.bar2.OptionsBar.AllowQuickCustomization = false;
             this.bar2.OptionsBar.DrawDragBorder = false;
             this.bar2.OptionsBar.MultiLine = true;
@@ -86,6 +92,13 @@
             this.btnHome.Id = 1;
             this.btnHome.Name = "btnHome";
             this.btnHome.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnHome_ItemClick);
+            // 
+            // barButtonItem1
+            // 
+            this.barButtonItem1.Caption = "Charts";
+            this.barButtonItem1.Id = 2;
+            this.barButtonItem1.Name = "barButtonItem1";
+            this.barButtonItem1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem1_ItemClick);
             // 
             // barDockControlTop
             // 
@@ -124,6 +137,13 @@
             this.ribbonPage2.Name = "ribbonPage2";
             this.ribbonPage2.Text = "ribbonPage2";
             // 
+            // btnAddParameters
+            // 
+            this.btnAddParameters.Caption = "Add Parameters";
+            this.btnAddParameters.Id = 3;
+            this.btnAddParameters.Name = "btnAddParameters";
+            this.btnAddParameters.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnAddParameters_ItemClick);
+            // 
             // OuterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -155,5 +175,7 @@
         private DevExpress.XtraBars.BarButtonItem btnAbout;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage2;
         private DevExpress.XtraBars.BarButtonItem btnHome;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
+        private DevExpress.XtraBars.BarButtonItem btnAddParameters;
     }
 }

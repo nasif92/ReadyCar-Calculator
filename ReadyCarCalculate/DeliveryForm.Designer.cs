@@ -44,7 +44,7 @@
             this.labelServiceFee = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.labelGst = new System.Windows.Forms.Label();
             this.labelLabourFee = new System.Windows.Forms.Label();
             this.checkBoxAddLabourFee = new System.Windows.Forms.CheckBox();
             this.labelDiscountAdded = new System.Windows.Forms.Label();
@@ -55,6 +55,8 @@
             this.labelLabourCost = new System.Windows.Forms.Label();
             this.textEditNoOfHours = new DevExpress.XtraEditors.TextEdit();
             this.labelLabourHours = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.comboBoxProvinces = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.textEditDistance.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEditCategory.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditServiceFee.Properties)).BeginInit();
@@ -88,7 +90,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(97, 353);
+            this.label3.Location = new System.Drawing.Point(97, 401);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(133, 24);
             this.label3.TabIndex = 2;
@@ -191,7 +193,7 @@
             this.textEditServiceFee.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
             this.textEditServiceFee.Properties.Appearance.Options.UseFont = true;
             this.textEditServiceFee.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.textEditServiceFee.Size = new System.Drawing.Size(136, 24);
+            this.textEditServiceFee.Size = new System.Drawing.Size(250, 24);
             this.textEditServiceFee.TabIndex = 12;
             // 
             // btnCalculate
@@ -242,17 +244,17 @@
             this.label8.TabIndex = 18;
             this.label8.Text = "(auto generated)";
             // 
-            // label5
+            // labelGst
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label5.Location = new System.Drawing.Point(406, 521);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(84, 20);
-            this.label5.TabIndex = 19;
-            this.label5.Text = "GST: 5%";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelGst.AutoSize = true;
+            this.labelGst.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelGst.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.labelGst.Location = new System.Drawing.Point(406, 521);
+            this.labelGst.Name = "labelGst";
+            this.labelGst.Size = new System.Drawing.Size(84, 20);
+            this.labelGst.TabIndex = 19;
+            this.labelGst.Text = "GST: 5%";
+            this.labelGst.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // labelLabourFee
             // 
@@ -307,9 +309,9 @@
             "40",
             "45",
             "50"});
-            this.comboBoxDiscount.Location = new System.Drawing.Point(268, 352);
+            this.comboBoxDiscount.Location = new System.Drawing.Point(268, 401);
             this.comboBoxDiscount.Name = "comboBoxDiscount";
-            this.comboBoxDiscount.Size = new System.Drawing.Size(136, 24);
+            this.comboBoxDiscount.Size = new System.Drawing.Size(250, 24);
             this.comboBoxDiscount.TabIndex = 23;
             this.comboBoxDiscount.Text = "0";
             this.comboBoxDiscount.SelectedIndexChanged += new System.EventHandler(this.comboBoxDiscount_SelectedIndexChanged);
@@ -383,11 +385,43 @@
             this.labelLabourHours.Text = "Hours of Work:";
             this.labelLabourHours.Visible = false;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(97, 351);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(98, 24);
+            this.label1.TabIndex = 31;
+            this.label1.Text = "Province:";
+            // 
+            // comboBoxProvinces
+            // 
+            this.comboBoxProvinces.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxProvinces.FormattingEnabled = true;
+            this.comboBoxProvinces.Items.AddRange(new object[] {
+            "AB",
+            "BC",
+            "MB",
+            "SK",
+            "QC",
+            "ON",
+            "NT",
+            "NL"});
+            this.comboBoxProvinces.Location = new System.Drawing.Point(268, 351);
+            this.comboBoxProvinces.Name = "comboBoxProvinces";
+            this.comboBoxProvinces.Size = new System.Drawing.Size(249, 24);
+            this.comboBoxProvinces.TabIndex = 32;
+            this.comboBoxProvinces.Text = "0";
+            this.comboBoxProvinces.SelectedIndexChanged += new System.EventHandler(this.ComboBoxProvinces_SelectedIndexChanged);
+            // 
             // DeliveryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1026, 628);
+            this.Controls.Add(this.comboBoxProvinces);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.textEditNoOfHours);
             this.Controls.Add(this.labelLabourHours);
             this.Controls.Add(this.textEditLabourCostPerHour);
@@ -398,7 +432,7 @@
             this.Controls.Add(this.labelDiscountAdded);
             this.Controls.Add(this.checkBoxAddLabourFee);
             this.Controls.Add(this.labelLabourFee);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.labelGst);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.labelServiceFee);
@@ -448,7 +482,7 @@
         private System.Windows.Forms.Label labelServiceFee;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label labelGst;
         private System.Windows.Forms.Label labelLabourFee;
         private System.Windows.Forms.CheckBox checkBoxAddLabourFee;
         private System.Windows.Forms.Label labelDiscountAdded;
@@ -459,6 +493,8 @@
         private System.Windows.Forms.Label labelLabourCost;
         private DevExpress.XtraEditors.TextEdit textEditNoOfHours;
         private System.Windows.Forms.Label labelLabourHours;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox comboBoxProvinces;
     }
 }
 

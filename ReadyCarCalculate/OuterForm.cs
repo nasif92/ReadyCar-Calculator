@@ -27,5 +27,20 @@ namespace ReadyCarCalculate
         {
             new Homeform(this) { MdiParent = this, StartPosition = FormStartPosition.CenterScreen, }.Show();
         }
+
+        private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            new ChartsForm(this) { MdiParent = this, StartPosition = FormStartPosition.CenterScreen, }.Show();
+        }
+
+        private void btnAddParameters_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            this.IsMdiContainer = true;
+
+            ParametersForm sibling = new ParametersForm(this);
+            sibling.StartPosition = FormStartPosition.CenterScreen;
+            sibling.ShowDialog();
+            
+        }
     }
 }

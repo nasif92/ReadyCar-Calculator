@@ -34,6 +34,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButtonCharts = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -90,11 +91,24 @@
             this.simpleButton1.Appearance.Options.UseFont = true;
             this.simpleButton1.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.simpleButton1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("simpleButton1.ImageOptions.SvgImage")));
-            this.simpleButton1.Location = new System.Drawing.Point(541, 573);
+            this.simpleButton1.Location = new System.Drawing.Point(770, 573);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(334, 118);
             this.simpleButton1.TabIndex = 8;
             this.simpleButton1.Text = "Pharmacy";
+            // 
+            // simpleButtonCharts
+            // 
+            this.simpleButtonCharts.Appearance.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Bold);
+            this.simpleButtonCharts.Appearance.Options.UseFont = true;
+            this.simpleButtonCharts.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.simpleButtonCharts.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("simpleButton2.ImageOptions.SvgImage")));
+            this.simpleButtonCharts.Location = new System.Drawing.Point(308, 573);
+            this.simpleButtonCharts.Name = "simpleButtonCharts";
+            this.simpleButtonCharts.Size = new System.Drawing.Size(334, 118);
+            this.simpleButtonCharts.TabIndex = 9;
+            this.simpleButtonCharts.Text = "Charts";
+            this.simpleButtonCharts.Click += new System.EventHandler(this.simpleButtonCharts_Click);
             // 
             // Homeform
             // 
@@ -102,6 +116,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1468, 877);
             this.ControlBox = false;
+            this.Controls.Add(this.simpleButtonCharts);
             this.Controls.Add(this.simpleButton1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
@@ -126,5 +141,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private DevExpress.XtraEditors.SimpleButton simpleButtonCharts;
     }
 }

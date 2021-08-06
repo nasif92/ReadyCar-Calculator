@@ -32,7 +32,12 @@ namespace ReadyCarCalculate
 
         private void barButtonCharts_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            new ChartsForm(outer).Show();
+        }
+
+        private void simpleButtonCharts_Click(object sender, EventArgs e)
+        {
+            new ChartsForm(outer) { MdiParent = this.outer }.Show();
+
         }
     }
 }

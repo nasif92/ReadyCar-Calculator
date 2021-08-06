@@ -9,43 +9,54 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using DevExpress.XtraCharts;
+using System.Collections;
 
 namespace ReadyCarCalculate
 {
-    public partial class ChartsForm : DevExpress.XtraEditors.XtraForm
+    public partial class ChartsForm : Form
     {
         private OuterForm OuterForm;
         public ChartsForm(OuterForm outerForm)
         {
             InitializeComponent();
             this.OuterForm = outerForm;
+            // histogram 1
+            double[] sampleData = new double[500];
+            Random rnd = new Random();
+            int[] test = { 1, 2, 3, 4, 5, 6, 6, 7, 8, 9, 9 };
+
+            for (int i = 0; i < sampleData.Length; i++)
+                sampleData[i] = rnd.NextDouble() * 100.0;
+
+            Series series = new Series();
+            series.DataSource = sampleData;
+            chartControlhistogram.Series.Add(series);
+            var diagram = (XYDiagram)chartControlhistogram.Diagram;
+            diagram.EnableAxisXZooming = true;
+            diagram.EnableAxisYZooming = true;
+            diagram.EnableAxisXScrolling = true;
+            diagram.EnableAxisYScrolling = true;
+            var scaleOptions = diagram.AxisX.NumericScaleOptions;
+            scaleOptions.AggregateFunction = AggregateFunction.Histogram;
+            scaleOptions.ScaleMode = ScaleMode.Interval;
+
+
         }
 
         private void ChartsForm_Load(object sender, EventArgs e)
         {
-            //Series customers = chartControlPie.Series["Customers"];
-            //ChartControl chartControlPie = new ChartControl();
-            chartControlPie.Titles.Add(new ChartTitle() { Text = "Customers added" });
-            var piechartSeries = new Series("SAMPLE DATA", ViewType.Pie);
+           // the first pie chart
+            Series piechartSeries = new Series("SAMPLE DATA", ViewType.Pie);
             piechartSeries.DataSource = DataPoint.GetDataPoints();
             piechartSeries.ArgumentDataMember = "Argument";
             piechartSeries.ValueDataMembers.AddRange(new string[] { "Value" });
             chartControlPie.Series.Add(piechartSeries);
-            // Format the series legend items.
+           
             piechartSeries.LegendTextPattern = "{A}";
             chartControlPie.Legend.Visibility = DevExpress.Utils.DefaultBoolean.True;
 
-            /*customers.Points.AddRange(
-                new SeriesPoint("Bran", 25),
-                new SeriesPoint("Kirvy",25),
-                new SeriesPoint("Whis", 25)
-                // and another points.
-            );*/
-            // The Points collection provides  Add...Point methods 
-            // that allow you to add series points for different view types.
-            //customers.Points.AddPoint("Bob", 22);
-            //customers.Points.AddBubblePoint("Chill", 2, 1.0);
-
+            // test data
+            /*
             double[] sampleData = new double[500];
             Random rnd = new Random();
             int start = 5;
@@ -57,37 +68,91 @@ namespace ReadyCarCalculate
 
             var histogram = new Series("Sample values 1", ViewType.Bar);
             var histogram2 = new Series("Sample values 2", ViewType.Bar);
-            chartControl1.Titles.Add(new ChartTitle() { Text = "Customers added" });
-
-            histogram.DataSource = test;
             histogram2.DataSource = values;
-            
-            // histogram 2
-            
 
-            //histogram.ArgumentDataMember = "Data types";
-            chartControl1.Series.Add(histogram);
-            chartControl1.Series.Add(histogram2);
+            // piechart 2
+            // Create a list.
+            ArrayList listDataSource = new ArrayList();
 
-            //var diagram = (XYDiagram)chartControl1.Diagram;
-            chartControl2.Series.Add(piechartSeries);
-            chartControl2.Series.Add(histogram2);
+            // Populate the list with records.
+            listDataSource.Add(new Record(1, "Jane", 19));
+            listDataSource.Add(new Record(2, "Joe", 30));
+            listDataSource.Add(new Record(3, "Bill", 15));
+            listDataSource.Add(new Record(4, "Michael", 42));
 
-            XYDiagram diagram2 = chartControl2.Diagram as XYDiagram;
-            //var scaleOptions = diagram2.AxisX.NumericScaleOptions;
-            //diagram2.AxisX.NumericScaleOptions.IntervalOptions.DivisionMode = IntervalDivisionMode.Count;
-            //diagram2.AxisX.NumericScaleOptions.IntervalOptions.Count = 5;
-            //...
-           // diagram.AxisX.NumericScaleOptions.IntervalOptions.DivisionMode = IntervalDivisionMode.Count;
-          //  diagram.AxisX.NumericScaleOptions.IntervalOptions.Count = 3;
-           // scaleOptions.AggregateFunction = AggregateFunction.Histogram;
+            // Bind the chart to the list.
+            ChartControl myChart = PieChartCostReportCategory;
+            myChart.DataSource = listDataSource;
 
-            //scaleOptions.ScaleMode = ScaleMode.Manual;
-            /*
-            
-            scaleOptions.IntervalOptions.Pattern = "{1} - {5}";
+            // Create a series, and add it to the chart.
+            Series series1 = new Series("My Series", ViewType.Pie);
+            myChart.Series.Add(series1);
+
+            // Adjust the series data members.
+            series1.ArgumentDataMember = "name";
+            series1.ValueDataMembers.AddRange(new string[] { "age" });
+
+            // Access the view-type-specific options of the series.
+           // ((PieSeriesView)series1.View).ColorEach = true;
+            series1.LegendPointOptions.Pattern = "{A}";
             */
-            // var barchart = new Series("")
+        }
+        private void ShowChartPreview(ChartControl chart)
+        {
+            // Check whether the ChartControl can be previewed.
+            if (!chart.IsPrintingAvailable)
+            {
+                MessageBox.Show("The 'DevExpress.XtraPrinting.v7.2.dll' is not found", "Error");
+                return;
+            }
+            // Open the Preview window.
+            chart.ShowPrintPreview();
+        }
+
+        private void PrintChart(ChartControl chart)
+        {
+            // Check whether the ChartControl can be printed.
+            if (!chart.IsPrintingAvailable)
+            {
+                MessageBox.Show("The 'DevExpress.XtraPrinting.v7.2.dll' is not found", "Error");
+                return;
+            }
+            // Print.
+            chart.Print();
+        }
+
+
+        private void chartControlhistogram_DoubleClick(object sender, EventArgs e)
+        {
+            ChartControl chart = sender as ChartControl;
+            ShowChartPreview(chart);
+        }
+    }
+
+    internal class Record
+    {
+        int id, age;
+        string name;
+        public Record(int id, string name, int age)
+        {
+            this.id = id;
+            this.name = name;
+            this.age = age;
+        }
+        public int ID
+        {
+            get { return id; }
+            set { id = value; }
+        }
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
+        public int Age
+        {
+            get { return age; }
+            set { age = value; }
         }
     }
 

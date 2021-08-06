@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" 
+     xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension"
+     xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+
+	<Product Id="*" Name="ReadyCarCalculator" Language="1033" Version="1.0.0.0" Manufacturer="Nasif Hossain" UpgradeCode="ddde06ee-8aac-41b6-ba6b-3ea2a5b7a411">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+        <Media Id="1" Cabinet="ReadyCarCalculate.cab" EmbedCab="yes"/>
+
+		<Feature Id="ProductFeature" Title="ReadyCarInstaller" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+        	<ComponentRef Id="ProgramMenuDir" />
+      <ComponentRef Id="SettingsRemove"/>
+
+		</Feature>
+   <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
+		<UIRef Id="WixUI_InstallDir" />
+
+	</Product>
+  
+ 
+	<Fragment>
+			<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLFOLDER" Name="ReadyCarInstaller"/>
+       <Component Id="SettingsRemove" Guid="C6067E69-20D5-4BBA-9DCA-49801AB23452">
+            <RemoveFile Id="RemoveSettingsXML" Name="*.xml" On="uninstall"/>
+          </Component>
+			</Directory>
+			<Directory Id="ProgramMenuFolder" Name="Programs">
+				<Directory Id="ProgramMenuDir" Name="ReadyCarInstaller">
+					<Component Id="ProgramMenuDir" Guid="075FFE21-1940-47B9-94C4-808F1824EB47">
+						<RemoveFolder Id="ProgramMenuDir" On="uninstall" />
+						<RegistryValue Root="HKCU" Key="[ProductName]" Type="string" Value="" KeyPath="yes" />
+					</Component>
+				</Directory>
+			</Directory>
+			<Directory Id="DesktopFolder" Name="Desktop" />
+		</Directory>
+	</Fragment>
+
+  
+	<Fragment>
+
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+			<!-- TODO: Remove the comments around this Component element and the ComponentRef below in order to add resources to this installer. -->
+			<!-- <Component Id="ProductComponent"> -->
+   <?define TargetDir=$(var.ReadyCarCalculate.TargetDir)?>
+        <!-- Program Files 64bit folder -->
+
+      <Component Id="SourceComponent" Guid="6F322EA2-4787-48D1-BEA4-94F98330D9E9">
+                <File Id="ReadyCarCalculate_EXE" Name="ReadyCarCalculate.exe" DiskId="1" Source="$(var.TargetDir)ReadyCarCalculate.exe" KeyPath="yes">
+                  <Shortcut Id="startmenu_ReadyCarCalculate" Directory="ProgramMenuDir" Name="ReadyCarCalculate" WorkingDirectory="ReadyCarCalculate" Advertise="yes">
+                    <Icon Id="icon.exe" SourceFile="$(var.ReadyCarCalculate.TargetDir)..\..\Resources\icon.exe"/>
+                  </Shortcut>
+          <Shortcut Id="desktopReadyCarCalculate" Directory="DesktopFolder" Name="ReadyCarCalculate" WorkingDirectory="ReadyCarCalculate" Advertise="yes"
+                   Icon = "icon.exe"/>
+        </File>
+    <File Name="DevExpress.Data.Desktop.v20.1" DiskId="1"
+              Source="$(var.TargetDir)DevExpress.Data.Desktop.v20.1.dll"/>
+    <File Name="DevExpress.Data.v20.1" DiskId="1"
+              Source="$(var.TargetDir)DevExpress.Data.v20.1.dll"/>
+       <File Name="DevExpress.Pdf.v20.1.Core" DiskId="1"
+              Source="$(var.TargetDir)DevExpress.Pdf.v20.1.Core.dll"/>
+    <File Name="DevExpress.Printing.v20.1.Core" DiskId="1"
+              Source="$(var.TargetDir)DevExpress.Printing.v20.1.Core.dll"/>
+    <File Name="DevExpress.Sparkline.v20.1.Core" DiskId="1"
+              Source="$(var.TargetDir)DevExpress.Sparkline.v20.1.Core.dll"/>
+    <File Name="DevExpress.Utils.v20.1" DiskId="1"
+              Source="$(var.TargetDir)DevExpress.Utils.v20.1.dll"/>
+    <File Name="DevExpress.XtraEditors.v20.1" DiskId="1"
+              Source="$(var.TargetDir)DevExpress.XtraEditors.v20.1.dll"/>
+        <File Name="DevExpress.BonusSkins.v20.1" DiskId="1"
+                Source="$(var.TargetDir)DevExpress.BonusSkins.v20.1.dll"/>
+        <File Name="DevExpress.XtraBars.v20.1" DiskId="1"
+               Source="$(var.TargetDir)DevExpress.XtraBars.v20.1.dll"/>
+
+          </Component>
+
+		</ComponentGroup>
+	</Fragment>
+</Wix>
